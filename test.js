@@ -13,6 +13,7 @@ window.addEventListener("load", function () {
     .addEventListener("submit", async function (e) {
       e.preventDefault(); // before the code
       /* do what you want with the form */
+      console.log("action");
       document.getElementById("result").innerHTML = "calculating...";
       popSize = e.target["popSize"].value;
       const maxGen = e.target["maxGen"].value;
@@ -35,6 +36,7 @@ window.addEventListener("load", function () {
       var end = window.performance.now();
       document.getElementById("result").innerHTML = `
       Best cost:  ${recordDistance} </br>
+      Best cost:  ${bestEver} </br>
       Run time:  ${end - start} ms
       `;
     });
@@ -88,9 +90,15 @@ function calcDistance(points, order) {
     var cityBIndex = order[i + 1];
     var cityB = points[cityBIndex];
     var d = distance(cityA.x, cityA.y, cityB.x, cityB.y);
+    console.log(d);
     sum += d;
   }
   return sum;
 }
 
-const distance = (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1);
+const distance = (x1, y1, x2, y2) => {
+  let y = x2 - x1;
+  let x = y2 - y1;
+  return Math.sqrt(x * x + y * y);
+};
+
