@@ -38,7 +38,7 @@ function nextGeneration() {
 
 function pickOne(list, prob) {
   var index = 0;
-  var r = random(1);
+  var r = Math.random();
   while (r > 0) {
     r = r - prob[index];
     index++;
@@ -48,10 +48,9 @@ function pickOne(list, prob) {
 }
 
 function crossOver(orderA, orderB) {
-  var start = floor(random(orderA.length));
-  var end = floor(random(start + 1, orderB.length));
+  var start = Math.floor(Math.random() * (orderA.length + 1));
+  var end = Math.floor(Math.random() * (orderB.length - start) + (start + 1));
   var newOrder = orderA.slice(start, end);
-  var left = totalCities - newOrder.length;
   for (let i = 0; i < orderB.length; i++) {
     var city = orderB[i];
     if (!newOrder.includes(city)) {
@@ -63,8 +62,8 @@ function crossOver(orderA, orderB) {
 
 function mutate(order, mutationRate) {
   for (let i = 0; i < totalCities; i++) {
-    if (random(1) < mutationRate) {
-      var indexA = floor(random(order.length));
+    if (Math.random() < mutationRate) {
+      var indexA = Math.floor(Math.random() * order.length);
       var indexB = (indexA + 1) % totalCities;
       swap(order, indexA, indexB);
     }

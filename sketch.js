@@ -1,12 +1,13 @@
 var cities = [];
-var totalCities = 10;
+var totalCities = 12;
 
-var popSize = 3;
+var popSize = 500;
 var population = [];
 var fitness = [];
 
 var recordDistance = Infinity;
 var bestEver;
+var currentBest;
 
 var statusPopulation;
 
@@ -14,7 +15,8 @@ function setup() {
   createCanvas(600, 600);
   var order = [];
   for (let i = 0; i < totalCities; i++) {
-    var v = createVector(random(width), random(height));
+    var v = createVector(random(width), random(height / 2));
+    console.log(typeof v);
     cities[i] = v;
     order[i] = i;
   }
@@ -41,15 +43,19 @@ function draw() {
     ellipse(cities[n].x, cities[n].y, 16, 16);
   }
   endShape();
-}
 
-// function shuffle(a, num) {
-//   for (let i = 0; i < num; i++) {
-//     var indexA = floor(random(a.length));
-//     var indexB = floor(random(a.length));
-//     swap(a, indexA, indexB);
-//   }
-// }
+  translate(0, height / 2);
+  stroke(255);
+  strokeWeight(4);
+  noFill();
+  beginShape();
+  for (let i = 0; i < currentBest.length; i++) {
+    var n = currentBest[i];
+    vertex(cities[n].x, cities[n].y);
+    ellipse(cities[n].x, cities[n].y, 16, 16);
+  }
+  endShape();
+}
 
 function swap(a, i, j) {
   var temp = a[i];
