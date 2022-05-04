@@ -35,7 +35,7 @@ window.addEventListener("load", function () {
       var end = window.performance.now();
       document.getElementById("result").innerHTML = `
       Best cost:  ${recordDistance} </br>
-      Best cost:  ${bestEver} </br>
+      Best process:  ${bestEver} </br>
       Run time:  ${end - start} ms
       `;
     });
