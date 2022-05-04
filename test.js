@@ -13,7 +13,6 @@ window.addEventListener("load", function () {
     .addEventListener("submit", async function (e) {
       e.preventDefault(); // before the code
       /* do what you want with the form */
-      console.log("action");
       document.getElementById("result").innerHTML = "calculating...";
       popSize = e.target["popSize"].value;
       const maxGen = e.target["maxGen"].value;
@@ -90,7 +89,6 @@ function calcDistance(points, order) {
     var cityBIndex = order[i + 1];
     var cityB = points[cityBIndex];
     var d = distance(cityA.x, cityA.y, cityB.x, cityB.y);
-    console.log(d);
     sum += d;
   }
   return sum;
