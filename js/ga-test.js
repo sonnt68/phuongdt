@@ -49,8 +49,7 @@ function pickOne(list, prob) {
 
 function crossOver(orderA, orderB) {
   var start = Math.floor(Math.random() * (orderA.length + 1));
-  var end = Math.floor(Math.random() * (orderB.length - start) + (start + 1));
-  var newOrder = orderA.slice(start, end);
+  var newOrder = orderA.slice(start, orderA.length-1);
   for (let i = 0; i < orderB.length; i++) {
     var city = orderB[i];
     if (!newOrder.includes(city)) {
@@ -61,7 +60,8 @@ function crossOver(orderA, orderB) {
 }
 
 function mutate(order, mutationRate) {
-  for (let i = 0; i < totalCities; i++) {
+  const mutationCapacity = Math.floor(totalCities * 0.7);
+  for (let i = 0; i < mutationCapacity; i++) {
     if (Math.random() < mutationRate) {
       var indexA = Math.floor(Math.random() * order.length);
       var indexB = (indexA + 1) % totalCities;
